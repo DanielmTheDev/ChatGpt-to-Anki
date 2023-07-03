@@ -7,6 +7,20 @@
   "background": {
     "service_worker": "background.js"
   },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["copyText.js"]
+    }
+  ],
+  "commands": {
+    "import": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+H"
+      },
+      "description": "Import highlighted text into Anki"
+    }
+  },
   "permissions": ["storage", "activeTab", "scripting"],
   "icons": {
     "16": "/images/get_started16.png",
