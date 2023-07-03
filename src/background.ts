@@ -1,3 +1,3 @@
-﻿import {addImportCommandListener} from "./importCommand";
+﻿import { addImportCommandListener } from './importCommand';
 
-addImportCommandListener()
+addImportCommandListener();

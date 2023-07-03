@@ -1,8 +1,8 @@
 ﻿export const constants = {
-    "messages": {
-        "getSelectedText": "getSelectedText"
-    },
-    "commands": {
-        "import": "import"
-    }
+	'messages': {
+		'getSelectedText': 'getSelectedText'
+	},
+	'commands': {
+		'import': 'import'
+	}
 };
