@@ -9,13 +9,14 @@ export function addImportCommandListener(): void {
 }
 
 function importToAnki(): void {
-	chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-		chrome.tabs.sendMessage(tabs[0].id ?? 0, { message: constants.messages.getSelectedText }, function (response) {
+	chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
+		chrome.tabs.sendMessage(tabs[0].id ?? 0, { message: constants.messages.getSelectedText }, response => {
 			// choose from available decks
 			// choose from available tags or create new one
 			// save last selection
 			// add notes
-			const transformedData = (response.data as string).split('\n');
+			// rely on https://ankiweb.net/shared/info/1259478414 to display code correctly
+			const transformedData = (response.data as string).split('|||');
 			console.log(transformedData);
 			sendRequest();
 		});
