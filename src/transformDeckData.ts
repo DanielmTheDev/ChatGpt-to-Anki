@@ -12,5 +12,5 @@ export function transformDeckData(copiedText: string): Note[] {
 }
 
 function trimNewlines(s: string): string {
-	return s.replace('\n', '');
+	return s.replace('\n', '').trim().replace('\\n', '');
 }
