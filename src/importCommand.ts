@@ -1,4 +1,5 @@
 ﻿import { constants } from './constants';
+import { transformDeckData } from './transformDeckData';
 
 export function addImportCommandListener(): void {
 	chrome.commands.onCommand.addListener(command => {
@@ -22,8 +23,6 @@ function importToAnki(): void {
 		});
 	});
 }
-
-function transformDeckData(data: string): {}
 
 function sendRequest(): Promise<void> {
 	return fetch('http://localhost:8765', {
