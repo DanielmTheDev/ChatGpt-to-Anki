@@ -1,6 +1,6 @@
 ﻿import { constants } from './constants';
 import { transformDeckData } from './transformDeckData';
-import { DecksResult } from './decksResult';
+import { AnkiConnectResult } from './ankiConnectResult';
 
 export function addImportCommandListener(): void {
 	chrome.commands.onCommand.addListener(async command => {
@@ -11,7 +11,7 @@ export function addImportCommandListener(): void {
 }
 
 async function importToAnki(): Promise<void> {
-	const decksResult = await sendRequest();
+	const decksResult = await getAnkiDecks();
 	console.log(decksResult);
 	chrome.tabs.query({ active: true, currentWindow: true }, async tabs => {
 		chrome.tabs.sendMessage(tabs[0].id ?? 0, { message: constants.messages.getSelectedText }, response => {
@@ -26,7 +26,7 @@ async function importToAnki(): Promise<void> {
 	});
 }
 
-async function sendRequest(): Promise<DecksResult> {
+async function getAnkiDecks(): Promise<AnkiConnectResult<string[]>> {
 	const response = await fetch('http://localhost:8765', {
 		method: 'Post',
 		headers: {
