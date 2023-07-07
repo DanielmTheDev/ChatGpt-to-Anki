@@ -12,7 +12,8 @@ export function addImportCommandListener(): void {
 
 async function importToAnki(): Promise<void> {
 	const decksResult = await getAnkiDecks();
-	console.log(decksResult);
+	const tagsResult = await getAnkiTags();
+	console.log({ decksResult, tagsResult });
 	chrome.tabs.query({ active: true, currentWindow: true }, async tabs => {
 		chrome.tabs.sendMessage(tabs[0].id ?? 0, { message: constants.messages.getSelectedText }, response => {
 			// choose from available decks
@@ -27,13 +28,21 @@ async function importToAnki(): Promise<void> {
 }
 
 async function getAnkiDecks(): Promise<AnkiConnectResult<string[]>> {
+	return await getFromAnkiConnect('deckNames');
+}
+
+async function getAnkiTags(): Promise<AnkiConnectResult<string[]>> {
+	return await getFromAnkiConnect('getTags');
+}
+
+async function getFromAnkiConnect<T>(action: string): Promise<AnkiConnectResult<T>> {
 	const response = await fetch('http://localhost:8765', {
 		method: 'Post',
 		headers: {
 			'Content-Type': 'application/json',
 		},
 		body: JSON.stringify({
-			'action': 'deckNames',
+			'action': action,
 			'version': 6
 		})
 	});
