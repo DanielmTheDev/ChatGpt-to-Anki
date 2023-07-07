@@ -16,15 +16,17 @@ function importToAnki(): void {
 			// save last selection
 			// add notes
 			// rely on https://ankiweb.net/shared/info/1259478414 to display code correctly
-			const transformedData = (response.data as string).split('|||');
-			console.log(transformedData);
-			sendRequest();
+			const notesData = transformDeckData((response.data as string));
+			console.log(notesData);
+			sendRequest().then();
 		});
 	});
 }
 
-function sendRequest() {
-	fetch('http://localhost:8765', {
+function transformDeckData(data: string): {}
+
+function sendRequest(): Promise<void> {
+	return fetch('http://localhost:8765', {
 		method: 'Post',
 		headers: {
 			'Content-Type': 'application/json',

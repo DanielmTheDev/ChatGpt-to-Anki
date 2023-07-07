@@ -48,6 +48,7 @@ module.exports = {
 		'object-curly-spacing': [
 			'error',
 			'always'
-		]
+		],
+		'@typescript-eslint/explicit-function-return-type': 'error'
 	}
 };
