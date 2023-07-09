@@ -1,0 +1,3 @@
+﻿export enum MessageType {
+    Import
+}

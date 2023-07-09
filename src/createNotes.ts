@@ -3,7 +3,7 @@
 const pairSeparator = '^^^';
 const answerSeparator = '|||';
 
-export function transformDeckData(copiedText: string): Note[] {
+export function createNotes(copiedText: string): Note[] {
 	const pairs = copiedText.split(pairSeparator);
 	return pairs.map(pair => {
 		const splitPair = pair.split(answerSeparator);
