@@ -1,14 +1,9 @@
 ﻿import { constants } from './constants';
-import { createNotes } from './createNotes';
 import { getAnkiDecks, getAnkiTags } from './ankiConnect/ankiConnect';
 import { ImportMessage } from './message/importMessage';
 import { MessageType } from './message/messageType';
 
 // todo
-// choose from available decks
-// choose from available tags or create new one
-// save last selection
-// add notes
 // rely on https://ankiweb.net/shared/info/1259478414 to display code correctly
 
 export function addImportCommandListener(): void {
@@ -28,8 +23,6 @@ async function importToAnki(): Promise<void> {
 		console.log('Sending message', message);
 		chrome.tabs.sendMessage(tabs[0].id ?? 0, message, response => {
 			console.log('Received response from message', response);
-			const notes = createNotes((response.data as string));
-			console.log(notes);
 		});
 	});
 }

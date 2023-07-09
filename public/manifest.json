@@ -4,6 +4,12 @@
   "version": "1.0",
   "manifest_version": 3,
   "action": {},
+  "web_accessible_resources": [
+    {
+      "resources": [ "importForm.html" ],
+      "matches": [ "<all_urls>" ]
+    }
+  ],
   "background": {
     "service_worker": "background.js",
     "type": "module"
