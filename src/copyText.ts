@@ -1,6 +1,5 @@
 ﻿import { ImportMessage } from './message/importMessage';
 import { MessageType } from './message/messageType';
-import { createNotes } from './createNotes';
 
 function getHighlightedText(): string {
 	return window.getSelection()?.toString() ?? '';
@@ -17,13 +16,19 @@ chrome.runtime.onMessage.addListener((request: ImportMessage, sender, sendRespon
 		// send back to background script
 		// from there, save deck and tag selection for next time and add to anki
 
-		fetch(chrome.runtime.getURL('importForm.html'))
-			.then(response => response.text())
-			.then(html => {
-				const div = document.createElement('div');
-				div.innerHTML = html;
-				document.body.appendChild(div);
-			});
+		renderFormIframe();
 	}
 	sendResponse({ data: 'Message processed' });
 });
+
+function renderFormIframe(): void {
+	const iframe = document.createElement('iframe');
+	iframe.src = chrome.runtime.getURL('importForm.html');
+	iframe.style.position = 'fixed';
+	iframe.style.right = '5px';
+	iframe.style.top = '5px';
+	iframe.style.width = '300px';
+	iframe.style.height = '200px';
+	iframe.style.border = 'none';
+	document.body.appendChild(iframe);
+}
