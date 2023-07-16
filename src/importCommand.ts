@@ -3,9 +3,6 @@ import { getAnkiDecks, getAnkiTags } from './ankiConnect/ankiConnect';
 import { ImportMessage } from './message/importMessage';
 import { MessageType } from './message/messageType';
 
-// todo
-// rely on https://ankiweb.net/shared/info/1259478414 to display code correctly
-
 export function addImportCommandListener(): void {
 	chrome.commands.onCommand.addListener(async command => {
 		if (command === constants.commands.import) {

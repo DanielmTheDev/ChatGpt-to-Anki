@@ -1,6 +1,12 @@
 ﻿import { ImportMessage } from './message/importMessage';
 import { MessageType } from './message/messageType';
 
+// todo
+// show input for deck and tag
+// send back to background script
+// from there, save deck and tag selection for next time and add to anki
+// rely on https://ankiweb.net/shared/info/1259478414 to display code correctly
+
 function getHighlightedText(): string {
 	return window.getSelection()?.toString() ?? '';
 }
@@ -12,9 +18,6 @@ chrome.runtime.onMessage.addListener((request: ImportMessage, sender, sendRespon
 	if (request.messageType === MessageType.Import) {
 		// const copiedText = getHighlightedText();
 		// const notes = createNotes(copiedText);
-		// show input for deck and tag
-		// send back to background script
-		// from there, save deck and tag selection for next time and add to anki
 
 		renderFormIframe();
 	}

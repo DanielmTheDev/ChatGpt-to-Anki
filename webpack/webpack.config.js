@@ -4,7 +4,7 @@ module.exports = {
 	mode: 'production',
 	entry: {
 		background: path.resolve(__dirname, '..', 'src', 'background.ts'),
-		copyText: path.resolve(__dirname, '..', 'src', 'copyText.ts'),
+		addNotesDialog: path.resolve(__dirname, '..', 'src', 'addNotesDialog.ts'),
 	},
 	output: {
 		path: path.join(__dirname, '../dist'),
